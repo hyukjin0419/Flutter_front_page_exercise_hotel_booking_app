@@ -14,6 +14,19 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<bool> _selectedView = <bool>[false, true];
+  List<Product> _favoriteList = [];
+
+  List<Product> get favoriteList => _favoriteList;
+
+  void toggleFavorite(Product product) {
+    setState(() {
+      if (favoriteList.contains(product)) {
+        favoriteList.remove(product);
+      } else {
+        favoriteList.add(product);
+      }
+    });
+  }
 
   //grid view card
   List<Card> _buildGridCards(BuildContext context) {

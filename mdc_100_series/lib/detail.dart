@@ -12,7 +12,25 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
+  List<Product> favoriteList = [];
+
+  void addToFavorites() {
+    setState(() {
+      if (favoriteList.contains(widget.product)) {
+        favoriteList.remove(widget.product);
+      } else {
+        favoriteList.add(widget.product);
+      }
+    });
+  }
+
   bool isFavorite = false;
+  @override
+  void initState() {
+    super.initState();
+    // initState 메서드에서 isFavorite 변수를 초기화합니다.
+    isFavorite = favoriteList.contains(widget.product);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,21 +45,25 @@ class _DetailPageState extends State<DetailPage> {
               Hero(
                 tag: 'product_${widget.product.id}',
                 child: GestureDetector(
-                  onTap: () {},
-                  onDoubleTap: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                    });
-                  },
-                  child: Center(
-                    child: Align(
-                      alignment: Alignment.topCenter,
-                      child: AspectRatio(
-                        aspectRatio: 16 / 9,
-                        child: Image.asset(
-                          widget.product.assetName,
-                          package: widget.product.assetPackage,
-                          fit: BoxFit.fitWidth,
+                  child: Material(
+                    child: InkWell(
+                      onDoubleTap: () {
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                        addToFavorites();
+                      },
+                      child: Center(
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: AspectRatio(
+                            aspectRatio: 16 / 9,
+                            child: Image.asset(
+                              widget.product.assetName,
+                              package: widget.product.assetPackage,
+                              fit: BoxFit.fitWidth,
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -55,6 +77,7 @@ class _DetailPageState extends State<DetailPage> {
                   onTap: () {
                     setState(() {
                       isFavorite = !isFavorite;
+                      addToFavorites();
                     });
                   },
                   child: Icon(

@@ -31,12 +31,15 @@ class _HomePageState extends State<HomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            AspectRatio(
-              aspectRatio: 18 / 11,
-              child: Image.asset(
-                product.assetName,
-                package: product.assetPackage,
-                fit: BoxFit.fitWidth,
+            Hero(
+              tag: 'product_${product.id}',
+              child: AspectRatio(
+                aspectRatio: 18 / 11,
+                child: Image.asset(
+                  product.assetName,
+                  package: product.assetPackage,
+                  fit: BoxFit.fitWidth,
+                ),
               ),
             ),
             Expanded(
@@ -80,25 +83,21 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Hero(
-              tag:
-                  'product_${product.id}', // 고유한 태그를 지정합니다. 여기서는 product의 id를 사용합니다.
-              child: Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => DetailPage(product: product),
-                      ),
-                    );
-                  },
-                  child: Text(
-                    'More',
-                    style: TextStyle(
-                      color: Colors.blue,
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailPage(product: product),
                     ),
+                  );
+                },
+                child: Text(
+                  'More',
+                  style: TextStyle(
+                    color: Colors.blue,
                   ),
                 ),
               ),

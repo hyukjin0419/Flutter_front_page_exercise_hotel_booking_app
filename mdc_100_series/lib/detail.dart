@@ -6,7 +6,7 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 class DetailPage extends StatelessWidget {
   const DetailPage({Key? key, required this.product}) : super(key: key);
 
-  final Product product; // 제품 정보를 받아올 변수
+  final Product product;
 
   @override
   Widget build(BuildContext context) {
@@ -16,27 +16,37 @@ class DetailPage extends StatelessWidget {
       ),
       body: Column(
         children: <Widget>[
-          Hero(
-            tag:
-                'product_${product.id}', // 고유한 태그를 지정합니다. 여기서는 product의 id를 사용합니다.
-            child: GestureDetector(
-              child: Center(
-                child: Align(
-                  alignment: Alignment.topCenter,
-                  child: AspectRatio(
-                    aspectRatio: 16 / 9,
-                    child: Image.asset(
-                      product.assetName,
-                      package: product.assetPackage,
-                      fit: BoxFit.fitWidth,
+          Stack(
+            children: <Widget>[
+              Hero(
+                tag: 'product_${product.id}',
+                child: GestureDetector(
+                  child: Center(
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      child: AspectRatio(
+                        aspectRatio: 16 / 9,
+                        child: Image.asset(
+                          product.assetName,
+                          package: product.assetPackage,
+                          fit: BoxFit.fitWidth,
+                        ),
+                      ),
                     ),
                   ),
+                  onTap: () {},
                 ),
               ),
-              onTap: () {
-                Navigator.pop(context); // 이미지를 탭하면 이전 페이지로 돌아갑니다.
-              },
-            ),
+              Positioned(
+                top: 16.0,
+                right: 16.0,
+                child: Icon(
+                  Icons.favorite_border,
+                  color: Colors.red,
+                  size: 32.0,
+                ),
+              ),
+            ],
           ),
           Expanded(
             child: Padding(

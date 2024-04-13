@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
-import 'model/product.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'model/product.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   const DetailPage({Key? key, required this.product}) : super(key: key);
 
   final Product product;
+
+  @override
+  _DetailPageState createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  bool isFavorite = false;
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +25,43 @@ class DetailPage extends StatelessWidget {
           Stack(
             children: <Widget>[
               Hero(
-                tag: 'product_${product.id}',
+                tag: 'product_${widget.product.id}',
                 child: GestureDetector(
+                  onTap: () {},
+                  onDoubleTap: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                    });
+                  },
                   child: Center(
                     child: Align(
                       alignment: Alignment.topCenter,
                       child: AspectRatio(
                         aspectRatio: 16 / 9,
                         child: Image.asset(
-                          product.assetName,
-                          package: product.assetPackage,
+                          widget.product.assetName,
+                          package: widget.product.assetPackage,
                           fit: BoxFit.fitWidth,
                         ),
                       ),
                     ),
                   ),
-                  onTap: () {},
                 ),
               ),
               Positioned(
                 top: 16.0,
                 right: 16.0,
-                child: Icon(
-                  Icons.favorite_border,
-                  color: Colors.red,
-                  size: 32.0,
+                child: InkWell(
+                  onTap: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                    });
+                  },
+                  child: Icon(
+                    isFavorite ? Icons.favorite : Icons.favorite_border,
+                    color: isFavorite ? Colors.red : Colors.red,
+                    size: 32.0,
+                  ),
                 ),
               ),
             ],
@@ -52,13 +70,11 @@ class DetailPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 12.0, 16.0, 8.0),
               child: Column(
-                // TODO: Align labels to the bottom and center (103)
                 crossAxisAlignment: CrossAxisAlignment.start,
-                // TODO: Change innermost Column (103)
                 children: <Widget>[
                   Row(
                     children: List.generate(
-                      product.stars,
+                      widget.product.stars,
                       (index) => Icon(
                         Icons.star,
                         color: Colors.yellow,
@@ -69,7 +85,7 @@ class DetailPage extends StatelessWidget {
                   AnimatedTextKit(
                     animatedTexts: [
                       TypewriterAnimatedText(
-                        product.name,
+                        widget.product.name,
                         textStyle: const TextStyle(
                           fontSize: 32.0,
                           fontWeight: FontWeight.bold,
@@ -91,7 +107,7 @@ class DetailPage extends StatelessWidget {
                         size: 20.0,
                       ),
                       Text(
-                        product.address,
+                        widget.product.address,
                       )
                     ],
                   ),
@@ -103,12 +119,12 @@ class DetailPage extends StatelessWidget {
                         size: 20.0,
                       ),
                       Text(
-                        product.phoneNumber,
+                        widget.product.phoneNumber,
                       )
                     ],
                   ),
                   Divider(height: 1.0, color: Colors.blue),
-                  Text(product.description),
+                  Text(widget.product.description),
                 ],
               ),
             ),

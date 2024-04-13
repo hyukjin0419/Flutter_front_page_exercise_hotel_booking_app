@@ -13,17 +13,26 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         title: Text('Detail Page'),
       ),
-      body: GestureDetector(
-        child: Center(
-          child: Image.asset(
-            product.assetName,
-            package: product.assetPackage,
-            fit: BoxFit.fitWidth,
+      body: Hero(
+        tag: 'product_${product.id}', // 고유한 태그를 지정합니다. 여기서는 product의 id를 사용합니다.
+        child: GestureDetector(
+          child: Center(
+            child: Align(
+              alignment: Alignment.topCenter,
+              child: AspectRatio(
+                aspectRatio: 16 / 9,
+                child: Image.asset(
+                  product.assetName,
+                  package: product.assetPackage,
+                  fit: BoxFit.fitWidth,
+                ),
+              ),
+            ),
           ),
+          onTap: () {
+            Navigator.pop(context); // 이미지를 탭하면 이전 페이지로 돌아갑니다.
+          },
         ),
-        onTap: () {
-          Navigator.pop(context); // 이미지를 탭하면 이전 페이지로 돌아갑니다.
-        },
       ),
     );
   }

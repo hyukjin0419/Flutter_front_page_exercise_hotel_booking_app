@@ -59,10 +59,10 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Text(
                       product.name,
-                      style: theme.textTheme.titleLarge,
+                      style: theme.textTheme.titleMedium,
                       maxLines: 1,
                     ),
-                    const SizedBox(height: 8.0),
+                    const SizedBox(height: 10.0),
                     Row(
                       children: <Widget>[
                         Icon(
@@ -122,11 +122,11 @@ class _HomePageState extends State<HomePage> {
     return products.map((product) {
       return Card(
         clipBehavior: Clip.antiAlias,
-        child: Hero(
-          tag: 'product_${product.id}',
-          child: ListTile(
-            contentPadding: const EdgeInsets.all(16.0),
-            leading: AspectRatio(
+        child: ListTile(
+          contentPadding: const EdgeInsets.all(16.0),
+          leading: Hero(
+            tag: 'product_${product.id}',
+            child: AspectRatio(
               aspectRatio: 18 / 11,
               child: Image.asset(
                 product.assetName,
@@ -134,45 +134,45 @@ class _HomePageState extends State<HomePage> {
                 fit: BoxFit.fitWidth,
               ),
             ),
-            title: Row(
-              children: List.generate(
-                product.stars,
-                (index) => Icon(
-                  Icons.star,
-                  color: Colors.yellow,
-                  size: 10.0,
-                ),
+          ),
+          title: Row(
+            children: List.generate(
+              product.stars,
+              (index) => Icon(
+                Icons.star,
+                color: Colors.yellow,
+                size: 10.0,
               ),
             ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  product.name,
-                  style: theme.textTheme.titleLarge,
-                  maxLines: 1,
+          ),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                product.name,
+                style: theme.textTheme.subtitle1,
+                maxLines: 1,
+              ),
+              const SizedBox(height: 10.0),
+              Text(
+                product.address,
+                style: theme.textTheme.subtitle2,
+              )
+            ],
+          ),
+          trailing: TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DetailPage(product: product),
                 ),
-                const SizedBox(height: 8.0),
-                Text(
-                  product.address,
-                  style: theme.textTheme.titleSmall,
-                )
-              ],
-            ),
-            trailing: TextButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailPage(product: product),
-                  ),
-                );
-              },
-              child: Text(
-                'More',
-                style: TextStyle(
-                  color: Colors.blue,
-                ),
+              );
+            },
+            child: Text(
+              'More',
+              style: TextStyle(
+                color: Colors.blue,
               ),
             ),
           ),
@@ -213,7 +213,7 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(10.0),
                 child: ToggleButtons(
                   direction: vertical ? Axis.vertical : Axis.horizontal,
                   onPressed: (int index) {

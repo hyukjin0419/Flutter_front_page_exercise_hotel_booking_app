@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'model/product.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class DetailPage extends StatelessWidget {
   const DetailPage({Key? key, required this.product}) : super(key: key);
@@ -55,9 +56,21 @@ class DetailPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Text(
-                    product.name,
-                    maxLines: 1,
+                  AnimatedTextKit(
+                    animatedTexts: [
+                      TypewriterAnimatedText(
+                        product.name,
+                        textStyle: const TextStyle(
+                          fontSize: 32.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        speed: const Duration(milliseconds: 2000),
+                      ),
+                    ],
+                    totalRepeatCount: 4,
+                    pause: const Duration(milliseconds: 50),
+                    displayFullTextOnTap: true,
+                    stopPauseOnTap: true,
                   ),
                   const SizedBox(height: 10.0),
                   Row(

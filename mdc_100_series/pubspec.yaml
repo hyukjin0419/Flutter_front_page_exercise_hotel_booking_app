@@ -8,6 +8,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.17.0
+  animated_text_kit: ^4.2.2
 
   cupertino_icons: ^1.0.5
   shrine_images: ^2.0.2
@@ -61,4 +62,3 @@ flutter:
     - packages/shrine_images/35-0.jpg
     - packages/shrine_images/36-0.jpg
     - packages/shrine_images/37-0.jpg
-

@@ -85,8 +85,7 @@ class _HomePageState extends State<HomePage> {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {
-                  Navigator.pushNamed(context, '/detail',
-                      arguments: product.id);
+                  Navigator.pushNamed(context, '/detail', arguments: product);
                 },
                 child: Text(
                   'More',
@@ -152,7 +151,7 @@ class _HomePageState extends State<HomePage> {
           ),
           trailing: TextButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/detail', arguments: product.id);
+              Navigator.pushNamed(context, '/detail', arguments: product);
             },
             child: Text(
               'More',

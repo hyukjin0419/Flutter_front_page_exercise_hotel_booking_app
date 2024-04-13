@@ -15,8 +15,6 @@ class HomePage extends StatelessWidget {
     }
 
     final ThemeData theme = Theme.of(context);
-    final NumberFormat formatter = NumberFormat.simpleCurrency(
-        locale: Localizations.localeOf(context).toString());
 
     return products.map((product) {
       return Card(
@@ -115,11 +113,15 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: GridView.count(
-        crossAxisCount: 2,
-        padding: const EdgeInsets.all(16.0),
-        childAspectRatio: 8.0 / 9.0,
-        children: _buildGridCards(context),
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return GridView.count(
+            crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+            padding: const EdgeInsets.all(16.0),
+            childAspectRatio: 8.0 / 9.0,
+            children: _buildGridCards(context),
+          );
+        },
       ),
       drawer: Drawer(
         child: ListView(

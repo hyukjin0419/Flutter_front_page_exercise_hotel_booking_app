@@ -70,14 +70,14 @@ class HomePage extends StatelessWidget {
     // TODO: Pass Category variable to AsymmetricView (104)
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            semanticLabel: 'menu',
-          ),
-          onPressed: () {},
-        ),
-        title: const Text('SHRINE'),
+        // IconButton(
+        //   icon: const Icon(
+        //     Icons.menu,
+        //     semanticLabel: 'menu',
+        //   ),
+        //   onPressed: () {},
+        // ),
+        title: const Text('Main'),
         actions: <Widget>[
           IconButton(
             icon: const Icon(
@@ -100,6 +100,89 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         childAspectRatio: 8.0 / 9.0,
         children: _buildGridCards(context),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Pages'),
+            ),
+            //home
+            ListTile(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.home,
+                  semanticLabel: 'home',
+                ),
+                onPressed: () {},
+              ),
+              title: const Text('Home'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            //Search
+            ListTile(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.search,
+                  semanticLabel: 'Search',
+                ),
+                onPressed: () {},
+              ),
+              title: const Text('Search'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            //Favorite Hotel
+            ListTile(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.location_city,
+                  semanticLabel: 'Favorite Hotel',
+                ),
+                onPressed: () {},
+              ),
+              title: const Text('Favorite Hotel'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            //My Page
+            ListTile(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.person,
+                  semanticLabel: 'My Page',
+                ),
+                onPressed: () {},
+              ),
+              title: const Text('My Page'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+            //Log out
+            ListTile(
+              leading: IconButton(
+                icon: const Icon(
+                  Icons.logout,
+                  semanticLabel: 'log out',
+                ),
+                onPressed: () {},
+              ),
+              title: const Text('Log Out'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
       ),
       resizeToAvoidBottomInset: false,
     );

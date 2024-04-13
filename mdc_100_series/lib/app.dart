@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:shrine/singup.dart';
+import 'package:shrine/signup.dart';
 
 import 'home.dart';
 import 'login.dart';
+import 'search.dart';
+import 'favorite.dart';
+import 'mypage.dart';
 
-// TODO: Convert ShrineApp to stateful widget (104)
 class ShrineApp extends StatelessWidget {
   const ShrineApp({Key? key}) : super(key: key);
 
@@ -17,9 +19,9 @@ class ShrineApp extends StatelessWidget {
         '/': (BuildContext context) => const HomePage(),
         '/login': (BuildContext context) => const LoginPage(),
         '/login/signup': (BuildContext context) => const SignUpPage(),
-        // '/search':(BuildContext context) => const searchPage(),
-        // '/favorite': (BuildContext context) => const favoritePage(),
-        // '/mypage': (BuildContext context) => const myPage(),
+        '/search': (BuildContext context) => const SearchPage(),
+        '/favorite': (BuildContext context) => const FavoritePage(),
+        '/mypage': (BuildContext context) => const MyPage(),
       },
       theme: ThemeData.light(useMaterial3: true),
     );

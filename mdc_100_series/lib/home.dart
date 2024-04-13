@@ -84,7 +84,9 @@ class HomePage extends StatelessWidget {
               Icons.search,
               semanticLabel: 'search',
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/search');
+            },
           ),
           IconButton(
             icon: const Icon(
@@ -132,11 +134,13 @@ class HomePage extends StatelessWidget {
                   Icons.search,
                   semanticLabel: 'Search',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/search');
+                },
               ),
               title: const Text('Search'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/search');
               },
             ),
             //Favorite Hotel
@@ -146,11 +150,13 @@ class HomePage extends StatelessWidget {
                   Icons.location_city,
                   semanticLabel: 'Favorite Hotel',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/favorite');
+                },
               ),
               title: const Text('Favorite Hotel'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/favorite');
               },
             ),
             //My Page
@@ -160,11 +166,13 @@ class HomePage extends StatelessWidget {
                   Icons.person,
                   semanticLabel: 'My Page',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/mypage');
+                },
               ),
               title: const Text('My Page'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/mypage');
               },
             ),
             //Log out

@@ -21,6 +21,9 @@ class DetailPage extends StatelessWidget {
             fit: BoxFit.fitWidth,
           ),
         ),
+        onTap: () {
+          Navigator.pop(context); // 이미지를 탭하면 이전 페이지로 돌아갑니다.
+        },
       ),
     );
   }

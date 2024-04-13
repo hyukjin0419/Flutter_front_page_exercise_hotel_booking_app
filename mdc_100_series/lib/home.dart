@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 
 import 'model/product.dart';
 import 'model/products_repository.dart';
+import 'detail.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -27,9 +28,7 @@ class _HomePageState extends State<HomePage> {
     return products.map((product) {
       return Card(
         clipBehavior: Clip.antiAlias,
-        // TODO: Adjust card heights (103)
         child: Column(
-          // TODO: Center items on the card (103)
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             AspectRatio(
@@ -81,16 +80,25 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            Align(
-              alignment: Alignment.centerRight,
-              child: TextButton(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/detail', arguments: product);
-                },
-                child: Text(
-                  'More',
-                  style: TextStyle(
-                    color: Colors.blue,
+            Hero(
+              tag:
+                  'product_${product.id}', // 고유한 태그를 지정합니다. 여기서는 product의 id를 사용합니다.
+              child: Align(
+                alignment: Alignment.centerRight,
+                child: TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailPage(product: product),
+                      ),
+                    );
+                  },
+                  child: Text(
+                    'More',
+                    style: TextStyle(
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
               ),
@@ -114,49 +122,57 @@ class _HomePageState extends State<HomePage> {
     return products.map((product) {
       return Card(
         clipBehavior: Clip.antiAlias,
-        child: ListTile(
-          contentPadding: const EdgeInsets.all(16.0),
-          leading: AspectRatio(
-            aspectRatio: 18 / 11,
-            child: Image.asset(
-              product.assetName,
-              package: product.assetPackage,
-              fit: BoxFit.fitWidth,
-            ),
-          ),
-          title: Row(
-            children: List.generate(
-              product.stars,
-              (index) => Icon(
-                Icons.star,
-                color: Colors.yellow,
-                size: 10.0,
+        child: Hero(
+          tag: 'product_${product.id}',
+          child: ListTile(
+            contentPadding: const EdgeInsets.all(16.0),
+            leading: AspectRatio(
+              aspectRatio: 18 / 11,
+              child: Image.asset(
+                product.assetName,
+                package: product.assetPackage,
+                fit: BoxFit.fitWidth,
               ),
             ),
-          ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                product.name,
-                style: theme.textTheme.titleLarge,
-                maxLines: 1,
+            title: Row(
+              children: List.generate(
+                product.stars,
+                (index) => Icon(
+                  Icons.star,
+                  color: Colors.yellow,
+                  size: 10.0,
+                ),
               ),
-              const SizedBox(height: 8.0),
-              Text(
-                product.address,
-                style: theme.textTheme.titleSmall,
-              )
-            ],
-          ),
-          trailing: TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/detail', arguments: product);
-            },
-            child: Text(
-              'More',
-              style: TextStyle(
-                color: Colors.blue,
+            ),
+            subtitle: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  product.name,
+                  style: theme.textTheme.titleLarge,
+                  maxLines: 1,
+                ),
+                const SizedBox(height: 8.0),
+                Text(
+                  product.address,
+                  style: theme.textTheme.titleSmall,
+                )
+              ],
+            ),
+            trailing: TextButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetailPage(product: product),
+                  ),
+                );
+              },
+              child: Text(
+                'More',
+                style: TextStyle(
+                  color: Colors.blue,
+                ),
               ),
             ),
           ),

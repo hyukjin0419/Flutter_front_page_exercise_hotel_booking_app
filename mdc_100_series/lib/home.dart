@@ -4,9 +4,14 @@ import 'package:intl/intl.dart';
 import 'model/product.dart';
 import 'model/products_repository.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   List<Card> _buildGridCards(BuildContext context) {
     List<Product> products = ProductsRepository.loadProducts(Category.all);
 
@@ -82,8 +87,10 @@ class HomePage extends StatelessWidget {
   // TODO: Add a variable for Category (104)
   @override
   Widget build(BuildContext context) {
+    final List<bool> _selectedView = <bool>[false, true];
     // TODO: Return an AsymmetricView (104)
     // TODO: Pass Category variable to AsymmetricView (104)
+    bool vertical = false;
     return Scaffold(
       appBar: AppBar(
         // IconButton(
@@ -113,15 +120,36 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: OrientationBuilder(
-        builder: (context, orientation) {
-          return GridView.count(
-            crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
-            padding: const EdgeInsets.all(16.0),
-            childAspectRatio: 8.0 / 9.0,
-            children: _buildGridCards(context),
-          );
-        },
+      body: Column(
+        children: <Widget>[
+          ToggleButtons(
+            direction: vertical ? Axis.vertical : Axis.horizontal,
+            onPressed: (int index) {
+              setState(() {
+                for (int i = 0; i < _selectedView.length; i++) {
+                  _selectedView[i] = i == index;
+                }
+              });
+            },
+            isSelected: _selectedView,
+            children: <Widget>[
+              Icon(Icons.list),
+              Icon(Icons.grid_on),
+            ],
+          ),
+          Expanded(
+            child: OrientationBuilder(
+              builder: (context, orientation) {
+                return GridView.count(
+                  crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+                  padding: const EdgeInsets.all(16.0),
+                  childAspectRatio: 8.0 / 9.0,
+                  children: _buildGridCards(context),
+                );
+              },
+            ),
+          ),
+        ],
       ),
       drawer: Drawer(
         child: ListView(

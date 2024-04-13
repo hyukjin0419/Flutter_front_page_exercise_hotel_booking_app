@@ -17,6 +17,9 @@ class ShrineApp extends StatelessWidget {
         '/': (BuildContext context) => const HomePage(),
         '/login': (BuildContext context) => const LoginPage(),
         '/login/signup': (BuildContext context) => const SignUpPage(),
+        // '/search':(BuildContext context) => const searchPage(),
+        // '/favorite': (BuildContext context) => const favoritePage(),
+        // '/mypage': (BuildContext context) => const myPage(),
       },
       theme: ThemeData.light(useMaterial3: true),
     );

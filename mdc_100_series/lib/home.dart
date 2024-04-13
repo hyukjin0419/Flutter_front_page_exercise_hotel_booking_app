@@ -88,8 +88,8 @@ class HomePage extends StatelessWidget {
           ),
           IconButton(
             icon: const Icon(
-              Icons.tune,
-              semanticLabel: 'filter',
+              Icons.language,
+              semanticLabel: 'language',
             ),
             onPressed: () {},
           ),
@@ -174,11 +174,13 @@ class HomePage extends StatelessWidget {
                   Icons.logout,
                   semanticLabel: 'log out',
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
               ),
               title: const Text('Log Out'),
               onTap: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, '/login');
               },
             ),
           ],

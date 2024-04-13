@@ -1,10 +1,10 @@
 import 'hotel.dart';
 
 class HotelRepository {
-  static List<Hotel> loadProducts(Category category) {
+  static List<Hotel> loadProducts(Categorys categorys) {
     const allHotels = <Hotel>[
       Hotel(
-          category: Category.hotel,
+          categorys: Categorys.hotel,
           star: 5,
           id: 0,
           name: 'abc',
@@ -12,43 +12,43 @@ class HotelRepository {
           phoneNumber: 123,
           description: "Best in Korea"),
       Hotel(
-          category: Category.hotel,
+          categorys: Categorys.hotel,
           star: 5,
           id: 0,
-          name: 'abc',
-          address: "Korea",
-          phoneNumber: 123,
-          description: "Best in Korea"),
+          name: 'bcd',
+          address: "Japan",
+          phoneNumber: 333,
+          description: "Best in Japan"),
       Hotel(
-          category: Category.hotel,
+          categorys: Categorys.hotel,
           star: 5,
           id: 0,
-          name: 'abc',
-          address: "Korea",
-          phoneNumber: 123,
-          description: "Best in Korea"),
+          name: 'qwe',
+          address: "China",
+          phoneNumber: 222,
+          description: "Best in China"),
       Hotel(
-          category: Category.hotel,
+          categorys: Categorys.hotel,
           star: 5,
           id: 0,
-          name: 'abc',
-          address: "Korea",
-          phoneNumber: 123,
-          description: "Best in Korea"),
+          name: 'rrr',
+          address: "USA",
+          phoneNumber: 333,
+          description: "Best in USA"),
       Hotel(
-          category: Category.hotel,
+          categorys: Categorys.hotel,
           star: 5,
           id: 0,
-          name: 'abc',
-          address: "Korea",
-          phoneNumber: 123,
-          description: "Best in Korea"),
+          name: 'bbb',
+          address: "Russia",
+          phoneNumber: 777,
+          description: "Best in Russia"),
     ];
-    if (category == Category.all) {
+    if (categorys == Categorys.all) {
       return allHotels;
     } else {
       return allHotels.where((Hotel p) {
-        return p.category == category;
+        return p.categorys == categorys;
       }).toList();
     }
   }

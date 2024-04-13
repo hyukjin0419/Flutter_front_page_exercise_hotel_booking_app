@@ -49,9 +49,18 @@ class HomePage extends StatelessWidget {
                       maxLines: 1,
                     ),
                     const SizedBox(height: 8.0),
-                    Text(
-                      formatter.format(product.price),
-                      style: theme.textTheme.titleSmall,
+                    Row(
+                      children: <Widget>[
+                        Icon(
+                          Icons.location_on,
+                          color: Colors.blue,
+                          size: 20.0,
+                        ),
+                        Text(
+                          product.address,
+                          style: theme.textTheme.titleSmall,
+                        )
+                      ],
                     ),
                   ],
                 ),

@@ -1,4 +1,4 @@
-enum Category {
+enum Categorys {
   all,
   hotel,
   motel,
@@ -6,7 +6,7 @@ enum Category {
 
 class Hotel {
   const Hotel(
-      {required this.category,
+      {required this.categorys,
       required this.star,
       required this.id,
       required this.name,
@@ -14,7 +14,7 @@ class Hotel {
       required this.phoneNumber,
       required this.description});
 
-  final Category category;
+  final Categorys categorys;
   final int star;
   final int id;
   final String name;

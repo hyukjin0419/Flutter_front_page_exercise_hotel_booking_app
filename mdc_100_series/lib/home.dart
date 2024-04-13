@@ -13,6 +13,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final List<bool> _selectedView = <bool>[false, true];
+
+  //grid view card
   List<Card> _buildGridCards(BuildContext context) {
     List<Product> products = ProductsRepository.loadProducts(Category.all);
 
@@ -79,27 +81,96 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/detail',
+                      arguments: product.id);
+                },
+                child: Text(
+                  'More',
+                  style: TextStyle(
+                    color: Colors.blue,
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       );
     }).toList();
   }
 
-  // TODO: Add a variable for Category (104)
+  //list view card
+  List<Card> _buildListCards(BuildContext context) {
+    List<Product> products = ProductsRepository.loadProducts(Category.all);
+
+    if (products.isEmpty) {
+      return const <Card>[];
+    }
+
+    final ThemeData theme = Theme.of(context);
+
+    return products.map((product) {
+      return Card(
+        clipBehavior: Clip.antiAlias,
+        child: ListTile(
+          contentPadding: const EdgeInsets.all(16.0),
+          leading: AspectRatio(
+            aspectRatio: 18 / 11,
+            child: Image.asset(
+              product.assetName,
+              package: product.assetPackage,
+              fit: BoxFit.fitWidth,
+            ),
+          ),
+          title: Row(
+            children: List.generate(
+              product.stars,
+              (index) => Icon(
+                Icons.star,
+                color: Colors.yellow,
+                size: 10.0,
+              ),
+            ),
+          ),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                product.name,
+                style: theme.textTheme.titleLarge,
+                maxLines: 1,
+              ),
+              const SizedBox(height: 8.0),
+              Text(
+                product.address,
+                style: theme.textTheme.titleSmall,
+              )
+            ],
+          ),
+          trailing: TextButton(
+            onPressed: () {
+              Navigator.pushNamed(context, '/detail', arguments: product.id);
+            },
+            child: Text(
+              'More',
+              style: TextStyle(
+                color: Colors.blue,
+              ),
+            ),
+          ),
+        ),
+      );
+    }).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
-    // TODO: Return an AsymmetricView (104)
-    // TODO: Pass Category variable to AsymmetricView (104)
     bool vertical = false;
     return Scaffold(
       appBar: AppBar(
-        // IconButton(
-        //   icon: const Icon(
-        //     Icons.menu,
-        //     semanticLabel: 'menu',
-        //   ),
-        //   onPressed: () {},
-        // ),
         title: const Text('Main'),
         actions: <Widget>[
           IconButton(
@@ -152,12 +223,18 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: OrientationBuilder(
               builder: (context, orientation) {
-                return GridView.count(
-                  crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
-                  padding: const EdgeInsets.all(16.0),
-                  childAspectRatio: 8.0 / 9.0,
-                  children: _buildGridCards(context),
-                );
+                return _selectedView[1]
+                    ? GridView.count(
+                        crossAxisCount:
+                            orientation == Orientation.portrait ? 2 : 3,
+                        padding: const EdgeInsets.all(16.0),
+                        childAspectRatio: 8.0 / 9.0,
+                        children: _buildGridCards(context),
+                      )
+                    : ListView(
+                        padding: const EdgeInsets.all(16.0),
+                        children: _buildListCards(context),
+                      );
               },
             ),
           ),

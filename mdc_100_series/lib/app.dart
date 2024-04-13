@@ -6,6 +6,8 @@ import 'login.dart';
 import 'search.dart';
 import 'favorite.dart';
 import 'mypage.dart';
+import 'detail.dart';
+import 'model/product.dart'; // Product 모델을 가져와야 함
 
 class ShrineApp extends StatelessWidget {
   const ShrineApp({Key? key}) : super(key: key);
@@ -22,6 +24,7 @@ class ShrineApp extends StatelessWidget {
         '/search': (BuildContext context) => const SearchPage(),
         '/favorite': (BuildContext context) => const FavoritePage(),
         '/mypage': (BuildContext context) => const MyPage(),
+        '/detail': (BuildContext context) => const DetailPage(),
       },
       theme: ThemeData.light(useMaterial3: true),
     );

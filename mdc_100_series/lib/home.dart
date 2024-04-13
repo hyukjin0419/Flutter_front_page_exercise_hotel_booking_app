@@ -12,6 +12,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final List<bool> _selectedView = <bool>[false, true];
   List<Card> _buildGridCards(BuildContext context) {
     List<Product> products = ProductsRepository.loadProducts(Category.all);
 
@@ -87,7 +88,6 @@ class _HomePageState extends State<HomePage> {
   // TODO: Add a variable for Category (104)
   @override
   Widget build(BuildContext context) {
-    final List<bool> _selectedView = <bool>[false, true];
     // TODO: Return an AsymmetricView (104)
     // TODO: Pass Category variable to AsymmetricView (104)
     bool vertical = false;
@@ -122,19 +122,31 @@ class _HomePageState extends State<HomePage> {
       ),
       body: Column(
         children: <Widget>[
-          ToggleButtons(
-            direction: vertical ? Axis.vertical : Axis.horizontal,
-            onPressed: (int index) {
-              setState(() {
-                for (int i = 0; i < _selectedView.length; i++) {
-                  _selectedView[i] = i == index;
-                }
-              });
-            },
-            isSelected: _selectedView,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Icon(Icons.list),
-              Icon(Icons.grid_on),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ToggleButtons(
+                  direction: vertical ? Axis.vertical : Axis.horizontal,
+                  onPressed: (int index) {
+                    setState(() {
+                      for (int i = 0; i < _selectedView.length; i++) {
+                        _selectedView[i] = i == index;
+                      }
+                    });
+                  },
+                  borderRadius: const BorderRadius.all(Radius.circular(8)),
+                  selectedBorderColor: Colors.blue[700],
+                  selectedColor: Colors.white,
+                  fillColor: Colors.blue[200],
+                  color: Colors.blue[400],
+                  isSelected: _selectedView,
+                  children: icons,
+                ),
+              ),
+              // ),
             ],
           ),
           Expanded(
@@ -246,3 +258,8 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+const List<Widget> icons = <Widget>[
+  Icon(Icons.list),
+  Icon(Icons.grid_on),
+];

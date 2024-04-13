@@ -5,7 +5,7 @@ class ProductsRepository {
     const allProducts = <Product>[
       Product(
         category: Category.accessories,
-        stars: 4,
+        stars: 5,
         id: 0,
         name: 'Whitney belt',
         address: 'Korea',
@@ -14,7 +14,7 @@ class ProductsRepository {
       ),
       Product(
         category: Category.accessories,
-        stars: 4,
+        stars: 5,
         id: 1,
         name: 'Garden strand',
         address: 'Japan',
@@ -32,7 +32,7 @@ class ProductsRepository {
       ),
       Product(
         category: Category.accessories,
-        stars: 4,
+        stars: 1,
         id: 3,
         name: 'Varsity socks',
         address: 'China',
@@ -41,7 +41,7 @@ class ProductsRepository {
       ),
       Product(
         category: Category.accessories,
-        stars: 4,
+        stars: 5,
         id: 4,
         name: 'Weave keyring',
         address: 'USA',
@@ -50,7 +50,7 @@ class ProductsRepository {
       ),
       Product(
         category: Category.accessories,
-        stars: 4,
+        stars: 3,
         id: 5,
         name: 'Gatsby hat',
         address: 'Russia',

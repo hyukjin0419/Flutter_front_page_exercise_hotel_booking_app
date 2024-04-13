@@ -42,7 +42,16 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   // TODO: Change innermost Column (103)
                   children: <Widget>[
-                    // TODO: Handle overflowing labels (103)
+                    Row(
+                      children: List.generate(
+                        product.stars,
+                        (index) => Icon(
+                          Icons.star,
+                          color: Colors.yellow,
+                          size: 10.0,
+                        ),
+                      ),
+                    ),
                     Text(
                       product.name,
                       style: theme.textTheme.titleLarge,

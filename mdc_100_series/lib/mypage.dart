@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'model/product.dart';
 import 'model/products_repository.dart';
 import 'app.dart';
+import 'detail.dart';
 
 class MyPage extends StatefulWidget {
   const MyPage({Key? key}) : super(key: key);
@@ -57,44 +58,54 @@ class _MyPageState extends State<MyPage> {
                   itemCount: myAppState.favorites.length,
                   itemBuilder: (context, index) {
                     final product = myAppState.favorites[index];
-                    return Center(
-                      child: Card(
-                        child: SizedBox(
-                          width: 300,
-                          height: 300,
-                          child: Stack(
-                            children: [
-                              Image.asset(
-                                product.assetName,
-                                package: product.assetPackage,
-                                width: 300,
-                                height: 300,
-                                fit: BoxFit.cover,
-                              ),
-                              Positioned(
-                                bottom: 16.0,
-                                left: 16.0,
-                                child: Container(
-                                  padding: EdgeInsets.all(8),
-                                  // color: Colors.white,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(product.name,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                            fontWeight: FontWeight.bold,
-                                          )),
-                                      Text(product.address,
-                                          style: const TextStyle(
-                                            color: Colors.white,
-                                          )),
-                                    ],
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(product: product),
+                          ),
+                        );
+                      },
+                      child: Center(
+                        child: Card(
+                          child: SizedBox(
+                            width: 500,
+                            height: 300,
+                            child: Stack(
+                              children: [
+                                Image.asset(
+                                  product.assetName,
+                                  package: product.assetPackage,
+                                  width: 500,
+                                  height: 300,
+                                  fit: BoxFit.cover,
+                                ),
+                                Positioned(
+                                  bottom: 16.0,
+                                  left: 16.0,
+                                  child: Container(
+                                    padding: EdgeInsets.all(8),
+                                    // color: Colors.white,
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(product.name,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                        Text(product.address,
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                            )),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

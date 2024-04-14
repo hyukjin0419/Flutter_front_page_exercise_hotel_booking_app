@@ -15,8 +15,26 @@ class _MyPageState extends State<MyPage> {
       body: ListView(
         children: [
           // Load a Lottie file from a remote url
-          Lottie.network(
-              'https://raw.githubusercontent.com/xvrh/lottie-flutter/master/example/assets/Mobilo/A.json'),
+          Container(
+            width: 100,
+            height: 100,
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.blue, // 배경색 설정
+            ),
+            child: Center(
+              child: ClipOval(
+                child: SizedBox(
+                  width: 180,
+                  height: 180,
+                  child: Lottie.network(
+                    'https://raw.githubusercontent.com/xvrh/lottie-flutter/master/example/assets/Mobilo/A.json',
+                  ),
+                ),
+              ),
+            ),
+          ),
+          const Column()
         ],
       ),
     );

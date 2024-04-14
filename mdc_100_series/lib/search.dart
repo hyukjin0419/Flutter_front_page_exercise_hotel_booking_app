@@ -15,6 +15,23 @@ class _SearchPageState extends State<SearchPage> {
   bool noKidsZone = false;
   bool petFreindly = false;
   bool freeBreakfast = false;
+
+  DateTime selectedDate = DateTime.now();
+
+  Future<void> _selectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2101),
+    );
+    if (picked != null && picked != selectedDate) {
+      setState(() {
+        selectedDate = picked;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -108,7 +125,7 @@ class _SearchPageState extends State<SearchPage> {
           body: Container(
             padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
             child: OutlinedButton(
-              onPressed: () => {},
+              onPressed: () => {_selectDate(context)},
               child: const Text("select date"),
             ),
           ),

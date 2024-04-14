@@ -6,7 +6,7 @@ class ProductsRepository {
       Product(
         category: Category.accessories,
         stars: 5,
-        id: 0,
+        id: '0',
         name: 'Whitney belt',
         address: 'Korea',
         phoneNumber: '123',
@@ -15,7 +15,7 @@ class ProductsRepository {
       Product(
         category: Category.accessories,
         stars: 5,
-        id: 1,
+        id: '1',
         name: 'Garden strand',
         address: 'Japan',
         phoneNumber: '4556',
@@ -24,7 +24,7 @@ class ProductsRepository {
       Product(
         category: Category.accessories,
         stars: 4,
-        id: 2,
+        id: '2',
         name: 'Strut earrings',
         address: 'Korea',
         phoneNumber: '111',
@@ -33,7 +33,7 @@ class ProductsRepository {
       Product(
         category: Category.accessories,
         stars: 1,
-        id: 3,
+        id: '3',
         name: 'Varsity socks',
         address: 'China',
         phoneNumber: '112',
@@ -42,7 +42,7 @@ class ProductsRepository {
       Product(
         category: Category.accessories,
         stars: 5,
-        id: 4,
+        id: '4',
         name: 'Weave keyring',
         address: 'USA',
         phoneNumber: '911',
@@ -51,7 +51,7 @@ class ProductsRepository {
       Product(
         category: Category.accessories,
         stars: 3,
-        id: 5,
+        id: '5',
         name: 'Gatsby hat',
         address: 'Russia',
         phoneNumber: '111',

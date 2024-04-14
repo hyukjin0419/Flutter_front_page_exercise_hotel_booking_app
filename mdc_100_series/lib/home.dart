@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-
 import 'model/product.dart';
 import 'model/products_repository.dart';
 import 'detail.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -168,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            child: Text(
+            child: const Text(
               'More',
               style: TextStyle(
                 color: Colors.blue,
@@ -178,6 +177,14 @@ class _HomePageState extends State<HomePage> {
         ),
       );
     }).toList();
+  }
+
+  final Uri _url = Uri.parse("https://www.handong.edu/");
+
+  Future<void> _launchUrl() async {
+    if (!await launchUrl(_url)) {
+      throw Exception('Could not launch $_url');
+    }
   }
 
   @override
@@ -201,7 +208,7 @@ class _HomePageState extends State<HomePage> {
               Icons.language,
               semanticLabel: 'language',
             ),
-            onPressed: () {},
+            onPressed: _launchUrl,
           ),
         ],
       ),

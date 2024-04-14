@@ -18,7 +18,7 @@ class Product {
 
   final Category category;
   final int stars;
-  final int id;
+  final String id;
   final String name;
   final String address;
   final String phoneNumber;

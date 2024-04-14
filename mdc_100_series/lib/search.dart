@@ -12,7 +12,9 @@ class _SearchPageState extends State<SearchPage> {
     Item(header: "Filter", body: "select filters"),
     Item(header: "Date", body: "select date"),
   ];
-
+  bool noKidsZone = false;
+  bool petFreindly = false;
+  bool freeBreakfast = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -45,7 +47,52 @@ class _SearchPageState extends State<SearchPage> {
           },
           body: Container(
             padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-            child: Text("여기다가 checkbox 넣을 꺼엠"),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.blue,
+                      value: noKidsZone,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          noKidsZone = value!;
+                        });
+                      },
+                    ),
+                    const Text('No Kids Zone'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.blue,
+                      value: petFreindly,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          petFreindly = value!;
+                        });
+                      },
+                    ),
+                    const Text('Pet-Friendly'),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Checkbox(
+                      checkColor: Colors.blue,
+                      value: freeBreakfast,
+                      onChanged: (bool? value) {
+                        setState(() {
+                          freeBreakfast = value!;
+                        });
+                      },
+                    ),
+                    const Text('Free breakfast'),
+                  ],
+                ),
+              ],
+            ),
           ),
           isExpanded: list[0].isExpanded,
         ),

@@ -12,6 +12,9 @@ class _MyPageState extends State<MyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("My Page"),
+      ),
       body: ListView(
         children: [
           // Load a Lottie file from a remote url

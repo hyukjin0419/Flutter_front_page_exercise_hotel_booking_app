@@ -33,23 +33,38 @@ class _SearchPageState extends State<SearchPage> {
           list[index].isExpanded = isExpanded;
         });
       },
-      children: list.map<ExpansionPanel>((Item item) {
-        return ExpansionPanel(
+      children: [
+        ExpansionPanel(
           headerBuilder: (BuildContext context, bool isExpanded) {
             return ListTile(
               title: Text(
-                item.header,
+                list[0].header,
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
             );
           },
           body: Container(
             padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-            child: Text("여기다가 요소 넣을 꺼엠"),
+            child: Text("여기다가 checkbox 넣을 꺼엠"),
           ),
-          isExpanded: item.isExpanded,
-        );
-      }).toList(),
+          isExpanded: list[0].isExpanded,
+        ),
+        ExpansionPanel(
+          headerBuilder: (BuildContext context, bool isExpanded) {
+            return ListTile(
+              title: Text(
+                list[1].header,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
+            );
+          },
+          body: Container(
+            padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+            child: Text("여기다가 달력 넣을 꺼엠"),
+          ),
+          isExpanded: list[1].isExpanded,
+        ),
+      ],
     );
   }
 }

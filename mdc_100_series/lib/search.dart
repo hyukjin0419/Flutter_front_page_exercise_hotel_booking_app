@@ -19,7 +19,7 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Search Page'),
+          title: Text('Search'),
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -107,7 +107,10 @@ class _SearchPageState extends State<SearchPage> {
           },
           body: Container(
             padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-            child: Text("여기다가 달력 넣을 꺼엠"),
+            child: OutlinedButton(
+              onPressed: () => {},
+              child: const Text("select date"),
+            ),
           ),
           isExpanded: list[1].isExpanded,
         ),
@@ -127,15 +130,6 @@ class Item {
   String? body;
   String? subtitle;
   bool isExpanded;
-}
-
-List<Item> generateItems(int numberOfItems) {
-  return List<Item>.generate(numberOfItems, (int index) {
-    return Item(
-      header: 'Panel $index',
-      body: 'This is item number $index',
-    );
-  });
 }
 
 List<Item> list = [

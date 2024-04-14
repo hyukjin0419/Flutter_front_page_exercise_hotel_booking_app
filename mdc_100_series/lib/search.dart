@@ -45,10 +45,55 @@ class _SearchPageState extends State<SearchPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          _showAlertDialog(context);
+        },
         child: const Text("Search"),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
+  }
+
+  void _showAlertDialog(BuildContext context) {
+    List<String> selectedOptions = [];
+    if (noKidsZone) {
+      selectedOptions.add('No Kids Zone');
+    }
+    if (petFreindly) {
+      selectedOptions.add('Pet-Friendly');
+    }
+    if (freeBreakfast) {
+      selectedOptions.add('Free breakfast');
+    }
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Please Check Your Choice"),
+          content: Column(
+            children: [
+              for (var option in selectedOptions) Text(option),
+              Text(
+                "Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}", // 선택한 날짜를 'yyyy-MM-dd' 형식의 문자열로 변환하여 출력
+              ),
+            ],
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Search"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Cancel"),
+            ),
+          ],
+        );
+      },
     );
   }
 

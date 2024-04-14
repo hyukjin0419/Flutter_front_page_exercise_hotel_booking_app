@@ -36,14 +36,20 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Search'),
+      appBar: AppBar(
+        title: Text('Search'),
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          child: _buildPanel(),
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            child: _buildPanel(),
-          ),
-        ));
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: const Text("Search"),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
   }
 
   Widget _buildPanel() {

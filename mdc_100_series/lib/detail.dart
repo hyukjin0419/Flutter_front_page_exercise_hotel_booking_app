@@ -41,7 +41,6 @@ class _DetailPageState extends State<DetailPage> {
                     child: InkWell(
                       onDoubleTap: () {
                         appState.toggleFavorite(widget.product);
-                        appState.printFavorites();
                         setState(() {});
                       },
                       child: Center(

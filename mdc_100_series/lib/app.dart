@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:shrine/signup.dart';
-
 import 'home.dart';
 import 'login.dart';
 import 'search.dart';
@@ -58,13 +57,5 @@ class MyAppState extends ChangeNotifier {
   void removeFavorite(Product hotel) {
     favorites.remove(hotel);
     notifyListeners();
-  }
-
-  List<Product> getFavorites() {
-    return favorites;
-  }
-
-  void printFavorites() {
-    print('Favorites: $favorites');
   }
 }

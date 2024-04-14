@@ -12,25 +12,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  List<Product> favoriteList = [];
-
-  void addToFavorites() {
-    setState(() {
-      if (favoriteList.contains(widget.product)) {
-        favoriteList.remove(widget.product);
-      } else {
-        favoriteList.add(widget.product);
-      }
-    });
-  }
-
   bool isFavorite = false;
-  @override
-  void initState() {
-    super.initState();
-    // initState 메서드에서 isFavorite 변수를 초기화합니다.
-    isFavorite = favoriteList.contains(widget.product);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +33,7 @@ class _DetailPageState extends State<DetailPage> {
                         setState(() {
                           isFavorite = !isFavorite;
                         });
-                        addToFavorites();
+                        // addToFavorites();
                       },
                       child: Center(
                         child: Align(
@@ -77,7 +59,7 @@ class _DetailPageState extends State<DetailPage> {
                   onTap: () {
                     setState(() {
                       isFavorite = !isFavorite;
-                      addToFavorites();
+                      // addToFavorites();
                     });
                   },
                   child: Icon(

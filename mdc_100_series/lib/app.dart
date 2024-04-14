@@ -44,15 +44,13 @@ class ShrineApp extends StatelessWidget {
 }
 
 class MyAppState extends ChangeNotifier {
-  // late Product current;
   var favorites = <Product>[];
 
-  void toggleFavorite([Product? hotel]) {
-    // hotel = hotel ?? current;
+  void toggleFavorite(Product hotel) {
     if (favorites.contains(hotel)) {
       favorites.remove(hotel);
     } else {
-      favorites.add(hotel!);
+      favorites.add(hotel);
     }
     notifyListeners();
   }
@@ -60,5 +58,13 @@ class MyAppState extends ChangeNotifier {
   void removeFavorite(Product hotel) {
     favorites.remove(hotel);
     notifyListeners();
+  }
+
+  List<Product> getFavorites() {
+    return favorites;
+  }
+
+  void printFavorites() {
+    print('Favorites: $favorites');
   }
 }

@@ -14,12 +14,17 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-  bool isFavorite = false;
-
   @override
   Widget build(BuildContext context) {
     //여기서 favorite list 활용
     var appState = context.read<MyAppState>();
+
+    IconData icon;
+    if (appState.favorites.contains(widget.product)) {
+      icon = Icons.favorite;
+    } else {
+      icon = Icons.favorite_border;
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -35,10 +40,9 @@ class _DetailPageState extends State<DetailPage> {
                   child: Material(
                     child: InkWell(
                       onDoubleTap: () {
-                        setState(() {
-                          isFavorite = !isFavorite;
-                        });
-                        // addToFavorites();
+                        appState.toggleFavorite(widget.product);
+                        appState.printFavorites();
+                        setState(() {});
                       },
                       child: Center(
                         child: Align(
@@ -62,18 +66,10 @@ class _DetailPageState extends State<DetailPage> {
                 right: 16.0,
                 child: InkWell(
                   onTap: () {
-                    setState(() {
-                      isFavorite = !isFavorite;
-                      // addToFavorites();
-                    });
+                    appState.toggleFavorite(widget.product);
+                    setState(() {});
                   },
-                  child: Icon(
-                    appState.favorites.contains(widget.product)
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    color: Colors.red, // 원하는 색상으로 변경할 수 있습니다.
-                    size: 32.0,
-                  ),
+                  child: Icon(icon, color: Colors.red),
                 ),
               ),
             ],

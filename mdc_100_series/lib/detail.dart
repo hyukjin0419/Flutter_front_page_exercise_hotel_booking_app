@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:provider/provider.dart';
+import 'app.dart';
 import 'model/product.dart';
 
 class DetailPage extends StatefulWidget {
@@ -16,9 +18,12 @@ class _DetailPageState extends State<DetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    //여기서 favorite list 활용
+    var appState = context.read<MyAppState>();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Detail Page'),
+        title: Text('Detail'),
       ),
       body: Column(
         children: <Widget>[
@@ -63,8 +68,10 @@ class _DetailPageState extends State<DetailPage> {
                     });
                   },
                   child: Icon(
-                    isFavorite ? Icons.favorite : Icons.favorite_border,
-                    color: isFavorite ? Colors.red : Colors.red,
+                    appState.favorites.contains(widget.product)
+                        ? Icons.favorite
+                        : Icons.favorite_border,
+                    color: Colors.red, // 원하는 색상으로 변경할 수 있습니다.
                     size: 32.0,
                   ),
                 ),

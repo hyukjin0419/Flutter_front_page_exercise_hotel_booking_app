@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'model/product.dart';
 import 'app.dart';
 
 class FavoritePage extends StatelessWidget {

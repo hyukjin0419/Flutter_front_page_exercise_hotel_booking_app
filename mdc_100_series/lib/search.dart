@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -124,9 +125,18 @@ class _SearchPageState extends State<SearchPage> {
           },
           body: Container(
             padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-            child: OutlinedButton(
-              onPressed: () => {_selectDate(context)},
-              child: const Text("select date"),
+            child: Column(
+              children: [
+                OutlinedButton(
+                  onPressed: () {
+                    _selectDate(context);
+                  },
+                  child: const Text("select date"),
+                ),
+                Text(
+                  "Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}", // 선택한 날짜를 'yyyy-MM-dd' 형식의 문자열로 변환하여 출력
+                ),
+              ],
             ),
           ),
           isExpanded: list[1].isExpanded,
